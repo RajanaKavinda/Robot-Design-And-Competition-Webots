@@ -1,0 +1,49 @@
+#include <webots/Robot.hpp>
+#include <webots/DistanceSensor.hpp>
+#include <webots/Motor.hpp>
+
+using namespace webots;
+using namespace std;
+
+int main(int argc, char **argv) {
+  Robot *robot= new Robot();
+
+  const int timestep = 16;
+  const double max_speed = 10.0;
+
+  
+  }
+
+ 
+
+
+
+  
+    double P = kp * error;
+    double I = Integral + (ki * error);
+    double D = kd * (error - previous_error);
+    double correction = (P+I+D)/10;
+    
+    double left_motor = 0.5*max_speed + correction;
+    double right_motor = 0.5*max_speed - correction;
+    
+    
+    if (left_motor <0.0) {left_motor=0.0;}
+    if (left_motor >10.0) {left_motor=10.0;}
+    if (right_motor<0.0) {right_motor=0.0;}
+    if (right_motor>10.0) {right_motor=10.0;}
+    
+    
+    wheels[0]->setVelocity(left_motor);
+    wheels[1]->setVelocity(right_motor);
+    wheels[2]->setVelocity(left_motor);
+    wheels[3]->setVelocity(right_motor);
+    
+    previous_error = error;
+    Integral = I;
+}
+    
+    
+  delete robot ;
+  return 0;  // EXIT_SUCCESS   
+}
